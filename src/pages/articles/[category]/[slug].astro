@@ -7,9 +7,9 @@ import fetchArticles from "../../../lib/fetchArticles";
 
 const { category, slug } = Astro.params;
 
-const articles =  await fetchArticles( {collection:"all-articles", slug: slug} );
+const articles =  await fetchArticles( {collection:"all-articles", categoryName: category, slug: slug} );
 
-const { articleContent } = Astro.props;
+const articleContent = articles[0];
 
 ---
 
