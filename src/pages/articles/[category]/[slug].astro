@@ -5,23 +5,23 @@ import fetchArticles from "../../../lib/fetchArticles";
 
 // export const prerender = false;
 
-export async function getStaticPaths() {
-    const articles =  await fetchArticles({collection:"all-articles"});
 
-    return articles.map((article) => {
-        const category = article.category || 'uncategorized';
-        
-        return {
-            params: {
-                category: category,
-                slug: article.slug
-            },
-            props: {
-                articleContent: article
-            }
-        };
-    });
-}
+const articles =  await fetchArticles({collection:"all-articles"});
+
+return articles.map((article) => {
+    const category = article.category || 'uncategorized';
+    
+    return {
+        params: {
+            category: category,
+            slug: article.slug
+        },
+        props: {
+            articleContent: article
+        }
+    };
+});
+
 
 const { articleContent } = Astro.props;
 

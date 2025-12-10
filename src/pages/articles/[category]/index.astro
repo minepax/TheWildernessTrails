@@ -6,24 +6,24 @@ import { formatCategoryName } from "../../../lib/utils";
 
 // export const prerender = false;
 
-export async function getStaticPaths() {
-    const articles =  await fetchArticles( {collection:"all-articles"} );
-    const uniqueCategories = [...new Set(articles.map(article => article.category))];
 
-    return uniqueCategories.map((category) => {
-        const filteredArticles = articles.filter(
-            (article) => article.category === category
-        );
+const articles =  await fetchArticles( {collection:"all-articles"} );
+const uniqueCategories = [...new Set(articles.map(article => article.category))];
 
-        return {
-            params: { category: category },
-            props: {
-                category: category,
-                posts: filteredArticles
-            }
-        };
-    });
-}
+return uniqueCategories.map((category) => {
+    const filteredArticles = articles.filter(
+        (article) => article.category === category
+    );
+
+    return {
+        params: { category: category },
+        props: {
+            category: category,
+            posts: filteredArticles
+        }
+    };
+});
+
 
 const { category, posts } = Astro.props;
 const displayCategoryName = formatCategoryName(category);
