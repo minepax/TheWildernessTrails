@@ -3,9 +3,5 @@ import vercel from '@astrojs/vercel/serverless';
 
 export default defineConfig({
   output: 'server',
-  adapter: vercel({
-    isr: {
-      expiration: 60, 
-    },
-  }),
+  adapter: vercel(),
 });
