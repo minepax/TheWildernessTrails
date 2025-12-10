@@ -4,7 +4,7 @@ import ArticleLayout from "../../../layouts/ArticleLayout.astro";
 import fetchArticles from "../../../lib/fetchArticles";
 import { formatCategoryName } from "../../../lib/utils";
 
-export const prerender = true;
+export const prerender = false;
 
 export async function getStaticPaths() {
     const articles =  await fetchArticles( {collection:"all-articles"} );
