@@ -1,0 +1,60 @@
+---
+
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+import fetchArticles from "../../../lib/fetchArticles";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+    const articles =  await fetchArticles({collection:"all-articles"});
+
+    return articles.map((article) => {
+        const category = article.category || 'uncategorized';
+        
+        return {
+            params: {
+                category: category,
+                slug: article.slug
+            },
+            props: {
+                articleContent: article
+            }
+        };
+    });
+}
+
+const { articleContent } = Astro.props;
+
+console.log(articleContent.featuredImage);
+
+---
+
+<ArticleLayout></ArticleLayout>
+
+<main class="wrapper">
+
+    <h1>{articleContent.title}</h1>
+    <img src={articleContent.featuredImage} alt="oops-no-image" class="featured-image">
+    <div class="article-content flow" set:html={articleContent.content} />
+
+</main>
+
+<style>
+
+    h1 {
+        text-align: center;
+    }
+
+    .article-content {
+        max-width: 70ch;
+        margin-inline: auto;
+    }
+
+    .featured-image {
+        margin: 3rem auto;
+        max-height: 50vh;
+        border-radius: 1rem;
+        box-shadow: var(--shadow);
+    }
+
+</style>

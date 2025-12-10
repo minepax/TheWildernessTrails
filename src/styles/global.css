@@ -1,0 +1,155 @@
+/* =========================================================
+   1. FONT IMPORTS
+   --------------------------------------------------------- */
+   
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@150,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+
+
+
+/* =========================================================
+   2. GLOBAL VARIABLES
+   --------------------------------------------------------- */
+
+:root {
+    --clr-primary: hsl(120 100% 3%);
+    --clr-primary-surface: hsl(from var(--clr-primary) h 50% 15%);
+    --clr-secondary: hsl(from var(--clr-primary) h s 30%);
+    --clr-tertiary: hsl(from var(--clr-primary) h s 80%);
+    --clr-accent-1: hsl(from var(--clr-primary) h 40% 50%);
+    --clr-accent-2: hsl(from var(--clr-primary) h 40% 80%);
+    /* --clr-accent-3: hsl(160 100% 75%); */
+    --clr-font: hsl(from var(--clr-primary) h 20% 95%);
+
+    --shadow-color: 121 100% 2%;
+    --shadow:
+        0.3px 0.5px 0.5px hsl(var(--shadow-color) / 0.68),
+        0.7px 1.3px 1.4px -1.2px hsl(var(--shadow-color) / 0.57),
+        2.1px 4.1px 4.3px -2.5px hsl(var(--shadow-color) / 0.45),
+        5.6px 11.3px 11.8px -3.7px hsl(var(--shadow-color) / 0.34);
+}
+
+
+
+/* =========================================================
+   3. GLOBAL STYLES
+   --------------------------------------------------------- */
+
+html, body {
+    height: 100dvh;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+html {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    touch-action: manipulation;
+}
+
+body {
+  	font-family: "Inter", sans-serif;
+	font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.6;
+	color: var(--clr-font);
+
+    background-color: var(--clr-primary);
+}
+
+::-webkit-scrollbar {
+	width: 0.3rem;
+	background-color: var(--clr-primary);
+}
+
+::-webkit-scrollbar-track {
+	background-color: var(--clr-primary);
+}
+
+::-webkit-scrollbar-track-piece {
+	background-color: var(--clr-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  	background-color: var(--clr-font);
+}
+
+#overlay {
+    background: hsl(0 0% 0% / 0.5);
+    position: fixed;
+    inset: 0;
+    z-index: 998;
+    display: none;
+}
+
+
+
+/* =========================================================
+   4. GLOBAL RESETS
+   --------------------------------------------------------- */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+    font: inherit;
+}
+
+:where(p, h1, h2, h3) {
+    overflow-wrap: break-word;
+}
+
+:where(h1, h2, h3) {
+    font-family: "Bitter", sans-serif;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    text-wrap: balance;
+}
+
+h1 {
+    font-size: clamp(3rem, 8vw + 0.5rem, 6rem);
+    color: var(--clr-accent-1);
+    font-weight: 800;
+}
+
+h2 {
+    font-size: clamp(1.7rem, 3vw + 0.5rem, 2.5rem);
+    color: var(--clr-accent-2);
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--clr-accent-2);
+    font-weight: 600;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+img, svg, Image {
+    display: block;
+    max-width: 100%;
+}
+
+
+
+/* =========================================================
+   5. UTILITIES
+   --------------------------------------------------------- */
+
+/* ----- WRAPPER ----- */
+
+.wrapper {
+    margin-inline: auto;
+    padding: 5rem 2rem;
+    max-width: 70rem;
+}
+
+.flow {
+    --_flow-space: 1rem;
+    display: grid;
+    gap: var(--_flow-space);
+}

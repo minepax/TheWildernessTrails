@@ -1,0 +1,22 @@
+{
+  "name": "thewildernesstrails",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@astrojs/vercel": "^8.0.4",
+    "@wix/data": "^1.0.350",
+    "@wix/media": "^1.0.220",
+    "@wix/sdk": "^1.17.4",
+    "astro": "^5.16.4"
+  }
+}

@@ -1,0 +1,101 @@
+---
+
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+import fetchArticles from "../../../lib/fetchArticles";
+import { formatCategoryName } from "../../../lib/utils";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+    const articles =  await fetchArticles( {collection:"all-articles"} );
+    const uniqueCategories = [...new Set(articles.map(article => article.category))];
+
+    return uniqueCategories.map((category) => {
+        const filteredArticles = articles.filter(
+            (article) => article.category === category
+        );
+
+        return {
+            params: { category: category },
+            props: {
+                category: category,
+                posts: filteredArticles
+            }
+        };
+    });
+}
+
+const { category, posts } = Astro.props;
+const displayCategoryName = formatCategoryName(category);
+
+---
+
+<ArticleLayout></ArticleLayout>
+
+
+<main class="wrapper flow">
+    
+    <h1>{displayCategoryName}</h1>
+
+    <div class="latest-articles flow">
+        <h2>Latest articles</h2>
+
+        <ul class="article-list">
+            {posts.map((post) => (
+                <li class="article-card flow">
+                    <a href={`/articles/${category}/${post.slug}`} class="article-title"><h3>{post.title}</h3></a>
+                    <p>{post.description}</p>
+                </li>
+            ))}
+        </ul>
+    </div>
+
+
+</main>
+
+<style>
+
+    h1 {
+        text-align: center;
+    }
+    
+    .article-list {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+
+        .article-card {
+            --_flow-space: 0.5rem;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            border: 1px solid hsl(from var(--clr-font) h s l / 0.3);
+            background-color: hsl(from var(--clr-primary-surface) h s l / 0.5);
+            backdrop-filter: blur(10px);
+            transition: scale 0.4s ease;
+
+            &:hover {
+                scale: 1.02;
+            }
+
+            .article-title {
+                width: fit-content;
+                text-decoration: none;
+
+                h3 {
+                    transition: color 0.4s ease;
+
+                    &:hover {
+                        color: var(--clr-secondary);
+                    }
+                }
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+    }
+
+</style>
