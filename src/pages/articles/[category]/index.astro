@@ -6,27 +6,12 @@ import { formatCategoryName } from "../../../lib/utils";
 
 // export const prerender = false;
 
+const { category } = Astro.params;
 
-const articles =  await fetchArticles( {collection:"all-articles"} );
-const uniqueCategories = [...new Set(articles.map(article => article.category))];
+const posts = await fetchArticles( {collection: "articles", categoryName: category });
 
-return uniqueCategories.map((category) => {
-    const filteredArticles = articles.filter(
-        (article) => article.category === category
-    );
-
-    return {
-        params: { category: category },
-        props: {
-            category: category,
-            posts: filteredArticles
-        }
-    };
-});
-
-
-const { category, posts } = Astro.props;
-const displayCategoryName = formatCategoryName(category);
+const categoryName = category;
+const displayCategoryName = formatCategoryName(categoryName);
 
 ---
 
