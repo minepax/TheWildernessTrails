@@ -8,7 +8,7 @@ import { formatCategoryName } from "../../../lib/utils";
 
 const { category } = Astro.params;
 
-const posts = await fetchArticles( {collection: "articles", categoryName: category });
+const posts = await fetchArticles( {collection: "all-articles", categoryName: category });
 
 const categoryName = category;
 const displayCategoryName = formatCategoryName(categoryName);
