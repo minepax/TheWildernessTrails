@@ -25,9 +25,22 @@ export async function getStaticPaths() {
 
 const { articleContent } = Astro.props;
 
+// 1. Vercel-CDN-Cache-Control: Tells Vercel's private cache NO CACHING. (Highest Priority)
+Astro.response.headers.set(
+  'Vercel-CDN-Cache-Control', 
+  'no-cache, no-store' 
+);
+
+// 2. CDN-Cache-Control: Tells other CDNs and browsers NO CACHING. (Second Priority)
+Astro.response.headers.set(
+  'CDN-Cache-Control', 
+  'no-cache, no-store' 
+);
+
+// We can still include the standard one for good measure:
 Astro.response.headers.set(
   'Cache-Control', 
-  'no-store, max-age=0, s-maxage=0, must-revalidate'
+  'no-cache, no-store, max-age=0, must-revalidate'
 );
 
 ---
