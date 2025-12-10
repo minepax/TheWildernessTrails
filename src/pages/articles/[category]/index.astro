@@ -4,14 +4,17 @@ import ArticleLayout from "../../../layouts/ArticleLayout.astro";
 import fetchArticles from "../../../lib/fetchArticles";
 import { formatCategoryName } from "../../../lib/utils";
 
-// export const prerender = false;
-
 const { category } = Astro.params;
 
 const posts = await fetchArticles( {collection: "all-articles", categoryName: category} );
 
 const categoryName = category;
 const displayCategoryName = formatCategoryName(categoryName);
+
+Astro.response.headers.set(
+  'CDN-Cache-Control', 
+  'public, s-maxage=20, stale-while-revalidate=59'
+);
 
 ---
 
