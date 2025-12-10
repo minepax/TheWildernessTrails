@@ -5,7 +5,7 @@ import { formatCategoryName } from "../lib/utils";
 const articles = await fetchArticles({ collection:"all-articles" });
 const uniqueCategories = [...new Set(articles.map(article => article.category))].sort();
 
-// Astro.response.headers.set('Cache-Control', 'public, max-age=0');
+Astro.response.headers.set('Cache-Control', 'public, max-age=0');
 
 ---
 

@@ -28,7 +28,7 @@ export async function getStaticPaths() {
 const { category, posts } = Astro.props;
 const displayCategoryName = formatCategoryName(category);
 
-// Astro.response.headers.set('Cache-Control', 'public, max-age=0');
+Astro.response.headers.set('Cache-Control', 'public, max-age=0');
 
 ---
 
