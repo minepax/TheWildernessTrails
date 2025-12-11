@@ -13,7 +13,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@astrojs/vercel": "^8.0.4",
+    "@astrojs/vercel": "^9.0.2",
     "@wix/data": "^1.0.350",
     "@wix/media": "^1.0.220",
     "@wix/sdk": "^1.17.4",
