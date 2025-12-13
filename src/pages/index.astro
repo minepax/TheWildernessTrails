@@ -1,6 +1,10 @@
 ---
 
 import HomeLayout from "../layouts/HomeLayout.astro";
+import { Image } from "astro:assets";
+
+import HomePageBG from "../images/homepage-bg.jpg";
+
 import fetchArticles from "../lib/fetchArticles";
 
 const articles = await fetchArticles({ collection:"home-page" })
@@ -10,60 +14,83 @@ const articleContent = articles[0]
     
 <HomeLayout></HomeLayout>
 
-<main class="wrapper">
+<main>
 
     <section class="hero">
         <h1 class="hero-title">the unexplored</h1>
+        <Image src={HomePageBG} alt="" class="hero-image" />
     </section>
 
-    <section class="about flow">
-        
-        <h1>{articleContent.title}</h1>
+    <div class="wrapper">
 
-        <div class="content flow" set:html={articleContent.content} />
-        
-    </section>
+        <section class="about flow">
+            
+            <h1>{articleContent.title}</h1>
+    
+            <div class="content flow" set:html={articleContent.content} />
+            
+        </section>
+
+    </div>
+
 
 </main>
 
 <style>
 
-    .hero {
-        height: 100dvh;
-        display: flex;
-        justify-content: center;
+.hero {
+    margin-top: -4.5rem;
+    height: 100dvh;
+    display: grid;
+    place-items: center;
+    position: relative;
 
-        .hero-title {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-top: 30vh;
-            font-family: "Inconsolata", monospace;
-            color: var(--clr-primary);
-        }
+    .hero-title {
+        font-size: 2.5rem;
+        font-weight: 300;
+        margin-top: -5rem;
+        font-family: "Inconsolata", monospace;
+        color: var(--clr-primary);
+        animation: fade-out linear forwards;
+        animation-timeline: view();
+        animation-range: exit -20vh;
     }
 
-    .about {
+    .hero-image {
+        grid-column: 1/-1;
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.4;
+        animation: hero-img-animation linear forwards;
+        animation-timeline: view();
+        animation-range: exit;
+    }
+}
 
-        h1 {
-            text-align: center;
-        }
+@keyframes fade-out {
+    100% {opacity: 0;}
+}
+
+@keyframes hero-img-animation {
+    100% {opacity: 0; scale: 3;}
+}
+
+.about {
+
+    h1 {
+        text-align: center;
     }
 
     .content {
-
-        :where(h1, h2, h3) {
-            margin-inline: auto;
-        }
 
         p {
             max-width: 70ch;
             margin-inline: auto;
         }
     }
-
-
-    .wrapper {
-        margin-top: -4.5rem;
-    }
+}
 
 </style>

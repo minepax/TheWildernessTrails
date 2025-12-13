@@ -75,14 +75,6 @@ body {
   	background-color: var(--clr-font);
 }
 
-#overlay {
-    background: hsl(0 0% 0% / 0.5);
-    position: fixed;
-    inset: 0;
-    z-index: 998;
-    display: none;
-}
-
 
 
 /* =========================================================
