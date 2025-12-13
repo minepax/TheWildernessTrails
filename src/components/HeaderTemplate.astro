@@ -36,9 +36,7 @@ const uniqueCategories = [...new Set(articles.map(article => article.category))]
     color: var(--clr-tertiary);
     transition: color 0.3s ease;
 
-    &:hover {
-        color: var(--clr-accent-1);
-    }
+    &:hover {color: var(--clr-accent-1);}
 }
 
 .hamburger-btn {
@@ -51,9 +49,7 @@ const uniqueCategories = [...new Set(articles.map(article => article.category))]
         fill: var(--clr-tertiary);
         transition: fill 0.3s ease;
 
-        &:hover {
-            fill: var(--clr-accent-1);
-        }
+        &:hover {fill: var(--clr-accent-1);}
     }
 }
 
@@ -87,16 +83,12 @@ const uniqueCategories = [...new Set(articles.map(article => article.category))]
             color: var(--clr-primary);
             transition: color 0.3s ease;
 
-            &:hover {
-                color: hsl(from var(--clr-secondary) h s 35%);
-            }
+            &:hover {color: hsl(from var(--clr-secondary) h s 35%);}
         }
         
     }
 }
 
-.article-nav[data-visible] {
-    height: auto;
-}
+.article-nav[data-visible] {height: auto;}
 
 </style>

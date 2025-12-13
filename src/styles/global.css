@@ -3,7 +3,7 @@
    --------------------------------------------------------- */
    
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@150,200..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
 
 
@@ -42,10 +42,7 @@ html, body {
     scroll-padding-top: 100px;
 }
 
-html {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    touch-action: manipulation;
-}
+html {-webkit-tap-highlight-color: rgba(0,0,0,0);touch-action: manipulation;}
 
 body {
   	font-family: "Inter", sans-serif;
@@ -56,22 +53,13 @@ body {
     background-color: var(--clr-primary);
 }
 
-::-webkit-scrollbar {
-	width: 0.3rem;
-	background-color: var(--clr-primary);
-}
+::-webkit-scrollbar {width: 0.3rem; background-color: var(--clr-primary);}
 
-::-webkit-scrollbar-track {
-	background-color: var(--clr-primary);
-}
+::-webkit-scrollbar-track {background-color: var(--clr-primary);}
 
-::-webkit-scrollbar-track-piece {
-	background-color: var(--clr-primary);
-}
+::-webkit-scrollbar-track-piece {background-color: var(--clr-primary);}
 
-::-webkit-scrollbar-thumb {
-  	background-color: var(--clr-font);
-}
+::-webkit-scrollbar-thumb {background-color: var(--clr-font);}
 
 
 
@@ -86,9 +74,7 @@ body {
     font: inherit;
 }
 
-:where(p, h1, h2, h3) {
-    overflow-wrap: break-word;
-}
+:where(p, h1, h2, h3) {overflow-wrap: break-word;}
 
 :where(h1, h2, h3) {
     font-family: "Bitter", sans-serif;
@@ -115,14 +101,9 @@ h3 {
     font-weight: 600;
 }
 
-p {
-    text-wrap: pretty;
-}
+p {text-wrap: pretty;}
 
-img, svg, Image {
-    display: block;
-    max-width: 100%;
-}
+img, svg, Image {display: block; max-width: 100%;}
 
 
 
