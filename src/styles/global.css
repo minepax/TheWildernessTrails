@@ -15,12 +15,11 @@
 :root {
     --clr-primary: hsl(120 100% 3%);
     --clr-primary-surface: hsl(from var(--clr-primary) h 50% 15%);
-    --clr-secondary: hsl(from var(--clr-primary) h s 30%);
+    --clr-secondary: hsl(from var(--clr-primary) h s 25%);
     --clr-tertiary: hsl(from var(--clr-primary) h s 80%);
-    --clr-accent-1: hsl(from var(--clr-primary) h 40% 50%);
-    --clr-accent-2: hsl(from var(--clr-primary) h 40% 80%);
-    /* --clr-accent-3: hsl(160 100% 75%); */
-    --clr-font: hsl(from var(--clr-primary) h 20% 95%);
+    --clr-accent-1: hsl(50 100% 40%);
+    --clr-accent-2: hsl(from var(--clr-accent-1) h 50% 75%);
+    --clr-font: hsl(from var(--clr-primary) h 20% 90%);
 
     --shadow-color: 121 100% 2%;
     --shadow:

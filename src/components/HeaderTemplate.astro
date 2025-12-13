@@ -7,12 +7,7 @@ const uniqueCategories = [...new Set(articles.map(article => article.category))]
 
 ---
 
-
-<nav class="header-nav" aria-label="Header navigation">
-    <ul>
-        <li><a href="/">The Other Side</a></li>
-    </ul>
-</nav>
+<a href="/" class="logo">The Other Side</a>
 
 <nav class="article-nav" aria-label="Article navigation">
     <ul class="flow">
@@ -32,10 +27,56 @@ const uniqueCategories = [...new Set(articles.map(article => article.category))]
 
 <style>
 
-.header-nav ul {
+.logo {
+    font-weight: 600;
+    font-family: monospace;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--clr-tertiary);
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: var(--clr-accent-1);
+    }
+}
+
+.hamburger-btn {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+
+    svg {
+        width: clamp(2.5rem, 1vw  + 0.5rem, 3rem);
+        fill: var(--clr-tertiary);
+        transition: fill 0.3s ease;
+
+        &:hover {
+            fill: var(--clr-accent-1);
+        }
+    }
+}
+
+.article-nav {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 50%;
+    translate: -50%;
+    overflow: clip;
+    interpolate-size: allow-keywords;
+    width: calc(100% - 4rem);
+    height: 0;
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    
+    ul {
+        --_flow-space: 0.5rem;
+
         list-style-type: none;
-        display: flex;
-        gap: 2rem;
+        padding: 2rem;
+        border-radius: 1rem;
+        background-color: hsl(from var(--clr-primary-surface) h s 85%);
 
         a {
             font-weight: 600;
@@ -43,71 +84,19 @@ const uniqueCategories = [...new Set(articles.map(article => article.category))]
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--clr-accent-2);
+            color: var(--clr-primary);
             transition: color 0.3s ease;
 
             &:hover {
-                color: var(--clr-secondary);
+                color: hsl(from var(--clr-secondary) h s 35%);
             }
         }
-    }
-    
-    .article-nav {
-        position: absolute;
-        top: calc(100% + 0.5rem);
-        left: 50%;
-        translate: -50%;
-        overflow: clip;
-        interpolate-size: allow-keywords;
-        width: calc(100% - 4rem);
-        height: 0;
-        border-radius: 1rem;
-        box-shadow: var(--shadow);
-        transition: all 0.3s ease;
         
-        ul {
-            --_flow-space: 0.5rem;
-
-            list-style-type: none;
-            padding: 2rem;
-            border-radius: 1rem;
-            background-color: hsl(from var(--clr-font) h s 70%);
-
-            a {
-                font-weight: 600;
-                font-family: monospace;
-                text-decoration: none;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                color: var(--clr-primary);
-                transition: color 0.3s ease;
-
-                &:hover {
-                    color: var(--clr-secondary);
-                }
-            }
-            
-        }
     }
+}
 
-    .article-nav[data-visible] {
-        height: auto;
-    }
-
-    .hamburger-btn {
-        cursor: pointer;
-        border: none;
-        background-color: transparent;
-
-        svg {
-            width: clamp(2.5rem, 1vw  + 0.5rem, 3rem);
-            fill: var(--clr-accent-2);
-            transition: fill 0.3s ease;
-
-            &:hover {
-                fill: var(--clr-secondary);
-            }
-        }
-    }
+.article-nav[data-visible] {
+    height: auto;
+}
 
 </style>

@@ -4,10 +4,8 @@ import HeaderTemplate from "./HeaderTemplate.astro";
 
 ---
 
-<header class="header">
-    <div class="wrapper">
-        <HeaderTemplate></HeaderTemplate>
-    </div>
+<header class="header wrapper">
+    <HeaderTemplate></HeaderTemplate>
 </header>
 
 <style>
@@ -18,28 +16,26 @@ import HeaderTemplate from "./HeaderTemplate.astro";
     left: 0;
     z-index: 100;
     height: 4.5rem;
+    width: calc(100% - 4rem);
     pointer-events: none;
     opacity: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    border-radius: 100vw;
+    border: 1px solid hsl(from var(--clr-font) h s l / 0.3);
+    box-shadow: var(--shadow);
+    background-color: hsl(from var(--clr-primary-surface) h s 5% / 0.8);
+    backdrop-filter: blur(10px);
     animation: fade-in linear forwards;
     animation-timeline: view();
-    animation-range-start: 160vh;
-    animation-range-end: 200vh;
-    backdrop-filter: blur(10px);
+    animation-range-start: 150vh;
+    animation-range-end: 180vh;
+}
 
-    .wrapper {
-        position: relative;
-        width: 90%;
-        height: 100%;
-        padding-block: 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 2rem;
-        border-radius: 100vw;
-        border: 1px solid hsl(from var(--clr-font) h s l / 0.3);
-        box-shadow: var(--shadow);
-        background-color: hsl(from var(--clr-primary-surface) h s 8% / 0.7);
-    }
+.wrapper {
+    padding-block: 0;
 }
 
 @keyframes fade-in {
