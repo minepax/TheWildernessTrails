@@ -74,9 +74,9 @@ body {
     font: inherit;
 }
 
-:where(p, h1, h2, h3) {overflow-wrap: break-word;}
+:where(p, h1, h2, h3, h4) {overflow-wrap: break-word;}
 
-:where(h1, h2, h3) {
+:where(h1, h2, h3, h4) {
     font-family: "Bitter", sans-serif;
     line-height: 1.2;
     letter-spacing: 1px;
@@ -95,7 +95,7 @@ h2 {
     font-weight: 700;
 }
 
-h3 {
+h3, h4 {
     font-size: 1.5rem;
     color: var(--clr-accent-2);
     font-weight: 600;
