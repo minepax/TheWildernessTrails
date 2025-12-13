@@ -83,7 +83,7 @@ const uniqueCategories = [...new Set(articles.map(article => article.category))]
             color: var(--clr-primary);
             transition: color 0.3s ease;
 
-            &:hover {color: hsl(from var(--clr-secondary) h s 35%);}
+            &:hover {color: var(--clr-secondary);}
         }
         
     }

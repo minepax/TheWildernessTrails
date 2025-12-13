@@ -111,8 +111,6 @@ img, svg, Image {display: block; max-width: 100%;}
    5. UTILITIES
    --------------------------------------------------------- */
 
-/* ----- WRAPPER ----- */
-
 .wrapper {
     margin-inline: auto;
     padding: 5rem 2rem;

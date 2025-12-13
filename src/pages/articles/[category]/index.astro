@@ -8,8 +8,7 @@ const { category } = Astro.params;
 
 const posts = await fetchArticles( {collection: "all-articles", categoryName: category} );
 
-const categoryName = category;
-const displayCategoryName = formatCategoryName(categoryName);
+const displayCategoryName = formatCategoryName(category);
 
 Astro.response.headers.set(
   'CDN-Cache-Control', 

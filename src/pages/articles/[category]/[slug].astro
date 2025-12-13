@@ -2,12 +2,14 @@
 
 import ArticleLayout from "../../../layouts/ArticleLayout.astro";
 import fetchArticles from "../../../lib/fetchArticles";
+import { formatCategoryName } from "../../../lib/utils";
 
 const { category, slug } = Astro.params;
 
 const articles =  await fetchArticles( {collection:"all-articles", categoryName: category, slug: slug} );
-
 const articleContent = articles[0];
+
+const displayCategoryName = formatCategoryName(category);
 
 Astro.response.headers.set(
   'CDN-Cache-Control',
@@ -20,6 +22,10 @@ Astro.response.headers.set(
 
 <main class="wrapper">
 
+    <a href={`/articles/${category}`} class="breadcrumb">
+        Back to {displayCategoryName}
+    </a>
+
     <h1>{articleContent.title}</h1>
     <img src={articleContent.featuredImage} alt="oops-no-image" class="featured-image">
     <div class="article-content flow" set:html={articleContent.content} />
@@ -28,20 +34,43 @@ Astro.response.headers.set(
 
 <style>
 
-    h1 {text-align: center;}
+.breadcrumb {
+    position: fixed;
+    top: 5rem;
+    left: 50%;
+    translate: -50%;
+    z-index: 99;
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+    font-family: monospace;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--clr-tertiary);
+    transition: color 0.3s ease;
+    border-radius: 100vw;
+    border: 1px solid hsl(from var(--clr-font) h s l / 0.3);
+    box-shadow: var(--shadow);
+    background-color: hsl(from var(--clr-primary-surface) h s 5% / 0.8);
+    backdrop-filter: blur(10px);
 
-    .article-content {
-        max-width: 70ch;
-        margin-inline: auto;
+    &:hover {color: var(--clr-accent-1);}
+}
 
-        h4 {font-style: italic;}
-    }
+h1 {text-align: center;}
 
-    .featured-image {
-        margin: 3rem auto;
-        max-height: 50vh;
-        border-radius: 0.5rem;
-        box-shadow: var(--shadow);
-    }
+.article-content {
+    max-width: 70ch;
+    margin-inline: auto;
+
+    h4 {font-style: italic;}
+}
+
+.featured-image {
+    margin: 3rem auto;
+    max-height: 50vh;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+}
 
 </style>
