@@ -8,9 +8,4 @@ export default defineConfig({
       expiration: 60,
     },
   }),
-  vite: {
-    ssr: {
-      external: ['@wix/api-client'],
-    },
-  },
 });
