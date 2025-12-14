@@ -15,8 +15,8 @@
   "dependencies": {
     "@astrojs/vercel": "^9.0.2",
     "@wix/data": "^1.0.350",
-    "@wix/media": "^1.0.220",
     "@wix/sdk": "^1.17.4",
-    "astro": "^5.16.4"
+    "astro": "^5.16.4",
+    "dotenv": "^17.2.3"
   }
 }

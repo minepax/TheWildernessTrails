@@ -1,8 +1,10 @@
 ---
 
 import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+import CommentForm from '../../../components/CommentForm.astro';
+
 import fetchArticles from "../../../lib/fetchArticles";
-import { formatCategoryName } from "../../../lib/utils";
+import { formatCategoryName } from "../../../utils/utils";
 
 const { category, slug } = Astro.params;
 
@@ -26,13 +28,17 @@ Astro.response.headers.set(
         Back to {displayCategoryName}
     </a>
 
-    <h1>{articleContent.title}</h1>
+    <h2 class="article-title">{articleContent.title}</h2>
     <img src={articleContent.featuredImage} alt="oops-no-image" class="featured-image">
     <div class="article-content flow" set:html={articleContent.content} />
+
+    <CommentForm articleSlug = {slug} />
 
 </main>
 
 <style>
+
+.wrapper {max-width: 60ch}
 
 .breadcrumb {
     position: fixed;
@@ -59,13 +65,9 @@ Astro.response.headers.set(
     &:hover {color: var(--clr-accent-1);}
 }
 
-h1 {text-align: center;}
-
-.article-content {
-    max-width: 70ch;
-    margin-inline: auto;
-
-    h4 {font-style: italic;}
+.article-title {
+    color: var(--clr-accent-1);
+    text-align: center;
 }
 
 .featured-image {
@@ -74,5 +76,13 @@ h1 {text-align: center;}
     border-radius: 0.5rem;
     box-shadow: var(--shadow);
 }
+
+.article-content {
+    max-width: 70ch;
+    margin-inline: auto;
+
+    h4 {font-style: italic;}
+}
+
 
 </style>

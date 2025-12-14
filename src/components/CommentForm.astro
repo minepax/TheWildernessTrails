@@ -1,0 +1,140 @@
+<form class="comment-form flow">
+    <h2 class="form-title">Leave a comment on this article!</h2>
+
+    <div class="form-wrapper flow">
+
+        <input type="hidden" id="article-slug" name="articleSlug" value={Astro.props.articleSlug} required>
+
+        <div class="form-group flow">
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" placeholder="Your name" required>
+        </div>
+    
+        <div class="form-group flow">
+            <label for="comment">What do you think?</label>
+            <textarea id="comment" name="comment" placeholder="Your comment" required></textarea>
+        </div>
+    
+        <button type="submit" class="submit-btn">Submit Comment</button>
+        
+        <p id="message" class="form-message"></p>
+
+    </div>
+    
+</form>
+
+<style>
+
+.comment-form {    
+    margin-top: 5rem;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    border: 1px solid hsl(from var(--clr-font) h s l / 0.3);
+    background-color: hsl(from var(--clr-primary-surface) h s 7% / 0.7);
+    backdrop-filter: blur(10px);
+
+    .form-title {color: var(--clr-tertiary);}
+
+    .form-group {
+        --_flow-space: 0.1rem;
+
+        label {
+            font-family: "Bitter", sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--clr-accent-2);
+            text-transform: uppercase;
+        }
+
+        input, textarea {
+            padding: 0.25rem 0.75rem;
+            font-size: 1.1rem;
+            color: var(--clr-font);
+            border: none;
+            border-radius: 0.25rem;
+            background: var(--clr-primary);
+            
+            &:focus {
+                outline: 1px solid hsl(from var(--clr-font) h s l / 0.3);
+            }
+
+            &::placeholder {
+                color: var(--clr-font);
+                opacity: 0.4;
+            }
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: none;
+        }
+    }
+
+    .submit-btn {
+        font-weight: 600;
+        font-size: 1rem;
+        color: var(--clr-primary);
+        cursor: pointer;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        background: var(--clr-accent-1);
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+
+    .form-message {
+        font-weight: 600;
+        font-size: 1rem;
+        text-align: center;
+    }
+}
+
+</style>
+
+<script is:inline>
+
+document.querySelector('.comment-form')?.addEventListener('submit', async function(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const formData = new FormData(form);
+    const messageElement = document.getElementById('message');
+    
+    const commentData = {
+        title: formData.get('name'),
+        comment: formData.get('comment'),
+        articleSlug: formData.get('articleSlug'),
+    };
+
+    messageElement.textContent = 'Submitting...';
+    messageElement.style.color = 'hsl(120 20% 90%)';
+
+    try {
+        const response = await fetch('/api/submit-comment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(commentData)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            messageElement.textContent = 'Your comment has been sent!';
+            messageElement.style.color = 'hsl(120 100% 80%)';
+            form.reset();
+        } else {
+            messageElement.textContent = `Comment submission failed :(`;
+            messageElement.style.color = 'hsl(0 100% 80%)';
+        }
+    } catch (error) {
+        messageElement.textContent = 'Network error. Please try again :(';
+        messageElement.style.color = 'hsl(0 100% 80%)';
+        console.error('Fetch error:', error);
+    }
+});
+
+</script>

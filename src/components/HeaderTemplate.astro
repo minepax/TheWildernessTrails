@@ -1,6 +1,6 @@
 ---
 import fetchArticles from "../lib/fetchArticles";
-import { formatCategoryName } from "../lib/utils";
+import { formatCategoryName } from "../utils/utils";
 
 const articles = await fetchArticles({ collection:"all-articles" });
 const uniqueCategories = [...new Set(articles.map(article => article.category))].sort();
@@ -82,7 +82,7 @@ const uniqueCategories = [...new Set(articles.map(article => article.category))]
             color: var(--clr-primary);
             transition: color 0.3s ease;
 
-            &:hover {color: var(--clr-secondary);}
+            &:hover {color: hsl(from var(--clr-accent-1) h s 30%);}
         }
         
     }
