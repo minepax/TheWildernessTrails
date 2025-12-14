@@ -4,7 +4,7 @@ import { items } from '@wix/data';
 const myWixClient = createClient({
     modules: { items },
     auth: OAuthStrategy({
-        clientId: import.meta.env.VITE_WIX_CLIENT_ID,
+        clientId: import.meta.env.WIX_CLIENT_ID,
     }),
 });
 
