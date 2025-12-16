@@ -7,15 +7,12 @@ import '../styles/global.css';
 
 import HomePageBG from "../images/homepage-bg.jpg";
 
-import fetchArticles from "../lib/fetchArticles";
-
-const articles = await fetchArticles({ collection:"home-page" })
-const articleContent = articles[0]
-
 Astro.response.headers.set(
   'CDN-Cache-Control', 
   'public, s-maxage=10, stale-while-revalidate=59'
 );
+
+export const prerender = true;
 
 ---
 
@@ -43,17 +40,27 @@ Astro.response.headers.set(
         <Image src={HomePageBG} alt="" class="hero-image" />
     </section>
 
-    <div class="wrapper">
-
-        <section class="about flow">
+    <section class="about wrapper flow">
             
-            <h1>{articleContent.title}</h1>
-    
-            <div class="content flow" set:html={articleContent.content} />
-            
-        </section>
+        <h1 class="about-title">About this place</h1>
 
-    </div>
+        <p>
+            Have you ever wondered why we are born on this planet at any point in your life? Why do we go through a daily routine from a young age? Apart from the tasks that satisfy our survival needs, how did we end doing all the other things?
+        </p>
+        <p>
+            If anything, whatever activities we perform today are the projections of the stories or dialogues that our mind has created by grouping the sensory data we have subconsciously imbibed from our surroundings since our little brain started to develop. The most powerful patterns are those which had all our five senses involved while observing. If the story in play was something unique or an extreme version of our likes and dislikes, they have the potential to create strong imprints directly in our subconscious mind. Yet, we wonder, “why am I doing this particular thing when I didn’t intend to do it in the first place?”. Don’t we all?
+        </p>
+        <p>
+            When we marvel about how big the world is don’t we also get the sense that there is a whole bunch of things or aspects to life that’s out there but not very obvious to us. We get stuck in a rut trying to achieve something only to end up feeling unsatisfied. We exhaust ourselves constantly switching between things wondering, “Maybe this is it. This is that thing that I’ve been waiting to do my whole life”.
+        </p>
+        <p>
+            After a point, we start using the word “depth” to address how much we are willing to dive in to the very depth of all our doings, be it professional or personal to find that glowing satisfaction. And most often we connect this “depth” to words such as “loud”, “heavy”, “strong”, “grand”. What if the opposite added another dimension to the word “depth”? What if “subtle” held more “depth” than anything else? How do we experience the “subtle” with the “utmost depth”? Most often by cutting off the noise in every sense, be it inside your head or outside it. Confusing?
+        </p>
+        <p>
+            Here, we attempt to explore the tiny and subtler aspects of life with the utmost depth with a no-holds barred approach.
+        </p>
+        
+    </section>
 
 </main>
 
@@ -133,10 +140,9 @@ Astro.response.headers.set(
 }
 
 .about {
+    max-width: 70ch;
 
-    h1 {text-align: center;}
-
-    .content p {max-width: 70ch; margin-inline: auto;}
+    .about-title {text-align: center;}
 }
 
 </style>
