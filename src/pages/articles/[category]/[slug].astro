@@ -1,6 +1,6 @@
 ---
 
-import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+import ArticleLayout from "../../../layouts/MainLayout.astro";
 import CommentForm from '../../../components/CommentForm.astro';
 
 import fetchArticles from "../../../lib/fetchArticles";
@@ -37,6 +37,13 @@ Astro.response.headers.set(
 </main>
 
 <style>
+
+body {
+    background-image: linear-gradient(hsl(from var(--clr-primary) h 50% 3% / 0.7)), url(../../../images/articlepages-bg.jpg);
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+}
 
 .wrapper {max-width: 60ch}
 

@@ -1,6 +1,6 @@
 ---
 
-import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+import ArticleLayout from "../../../layouts/MainLayout.astro";
 import fetchArticles from "../../../lib/fetchArticles";
 import { formatCategoryName } from "../../../utils/utils";
 
@@ -18,7 +18,6 @@ Astro.response.headers.set(
 ---
 
 <ArticleLayout></ArticleLayout>
-
 
 <main class="wrapper flow">
     
@@ -42,40 +41,47 @@ Astro.response.headers.set(
 
 <style>
 
-    h1 {text-align: center;}
-    
-    .article-list {
-        list-style: none;
-        padding: 0;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1rem;
+body {
+    background-image: linear-gradient(hsl(from var(--clr-primary) h 50% 3% / 0.7)), url(../../../images/articlepages-bg.jpg);
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+}
 
-        .article-card {
-            --_flow-space: 0.5rem;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            border: 1px solid hsl(from var(--clr-font) h s l / 0.3);
-            background-color: hsl(from var(--clr-primary-surface) h s l / 0.5);
-            backdrop-filter: blur(10px);
-            transition: scale 0.4s ease;
+h1 {text-align: center;}
 
-            &:hover {scale: 1.02;}
+.article-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
 
-            .article-title {
-                width: fit-content;
-                text-decoration: none;
+    .article-card {
+        --_flow-space: 0.5rem;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        border: 1px solid hsl(from var(--clr-font) h s l / 0.3);
+        background-color: hsl(from var(--clr-primary-surface) h s l / 0.5);
+        backdrop-filter: blur(10px);
+        transition: scale 0.4s ease;
 
-                h3 {
-                    color: var(--clr-tertiary);
-                    transition: color 0.4s ease;
+        &:hover {scale: 1.02;}
 
-                    &:hover {color: var(--clr-accent-1);}
-                }
+        .article-title {
+            width: fit-content;
+            text-decoration: none;
+
+            h3 {
+                color: var(--clr-tertiary);
+                transition: color 0.4s ease;
+
+                &:hover {color: var(--clr-accent-1);}
             }
-
-            p {font-size: 1rem;}
         }
+
+        p {font-size: 1rem;}
     }
+}
 
 </style>

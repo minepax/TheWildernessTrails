@@ -1,7 +1,9 @@
 ---
 
-import HomeLayout from "../layouts/HomeLayout.astro";
+import { ClientRouter } from "astro:transitions";
 import { Image } from "astro:assets";
+import HeaderContent from "../components/HeaderContent.astro";
+import '../styles/global.css';
 
 import HomePageBG from "../images/homepage-bg.jpg";
 
@@ -16,8 +18,23 @@ Astro.response.headers.set(
 );
 
 ---
-    
-<HomeLayout></HomeLayout>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>The Wilderness Trails</title>
+    <ClientRouter />
+</head>
+
+<body>
+
+<header class="header wrapper">
+
+    <HeaderContent />
+
+</header>
 
 <main>
 
@@ -38,10 +55,41 @@ Astro.response.headers.set(
 
     </div>
 
-
 </main>
 
+</body>
+</html>
+
 <style>
+
+.header {
+    position: sticky;
+    top: 1rem;
+    left: 0;
+    z-index: 100;
+    width: calc(100% - 4rem);
+    height: 4.5rem;
+    padding-block: 0;
+    pointer-events: none;
+    opacity: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    border-radius: 100vw;
+    border: 1px solid hsl(from var(--clr-font) h s l / 0.3);
+    box-shadow: var(--shadow);
+    background-color: hsl(from var(--clr-primary-surface) h s 5% / 0.8);
+    backdrop-filter: blur(10px);
+    animation: fade-in linear forwards;
+    animation-timeline: view();
+    animation-range-start: 150vh;
+    animation-range-end: 180vh;
+}
+
+@keyframes fade-in {
+    100% {pointer-events: unset; opacity: 1;}
+}
 
 .hero {
     margin-top: -4.5rem;

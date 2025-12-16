@@ -1,6 +1,7 @@
 ---
 
-import FloatingHeader from "../components/FloatingHeader.astro";
+import { ClientRouter } from "astro:transitions";
+import MainHeader from "../components/MainHeader.astro";
 import '../styles/global.css';
 
 ---
@@ -10,13 +11,13 @@ import '../styles/global.css';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width initial-scale=1">
-    <script src="/scripts/global.js" is:inline defer></script>
     <title>The Wilderness Trails</title>
+    <ClientRouter />
 </head>
 
 <body>
 
-    <FloatingHeader></FloatingHeader>
+    <MainHeader transition:persist />
 
     <slot></slot>
 
