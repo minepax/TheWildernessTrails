@@ -1,6 +1,6 @@
 ---
 
-import ArticleLayout from "../../../layouts/MainLayout.astro";
+import MainLayout from "../../../layouts/MainLayout.astro";
 import fetchArticles from "../../../lib/fetchArticles";
 import { formatCategoryName } from "../../../utils/utils";
 
@@ -17,7 +17,7 @@ Astro.response.headers.set(
 
 ---
 
-<ArticleLayout></ArticleLayout>
+<MainLayout />
 
 <main class="wrapper flow">
     
