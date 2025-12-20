@@ -13,8 +13,6 @@ import '../styles/global.css';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width initial-scale=1">
     <title>The Wilderness Trails</title>
-    <!-- @ts-ignore -->
-    <Analytics />
     <ClientRouter />
 </head>
 
@@ -23,6 +21,9 @@ import '../styles/global.css';
     <MainHeader transition:persist />
 
     <slot></slot>
+
+    <!-- @ts-ignore -->
+    <Analytics />
 
 </body>
 </html>
