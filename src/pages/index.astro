@@ -1,5 +1,6 @@
 ---
 
+import Analytics from '@vercel/analytics/astro';
 import { ClientRouter } from "astro:transitions";
 import { Image } from "astro:assets";
 import HeaderContent from "../components/HeaderContent.astro";
@@ -22,6 +23,8 @@ export const prerender = true;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width initial-scale=1">
     <title>The Wilderness Trails</title>
+    <!-- @ts-ignore -->
+    <Analytics />
     <ClientRouter />
 </head>
 

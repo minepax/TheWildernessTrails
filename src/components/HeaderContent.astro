@@ -65,6 +65,8 @@ const uniqueCategories = [...new Set(articles.map(article => article.category))]
     border-radius: 1rem;
     box-shadow: var(--shadow);
     transition: all 0.3s ease;
+
+    &[data-visible] {height: auto;}
     
     ul {
         --_flow-space: 0.5rem;
@@ -88,8 +90,6 @@ const uniqueCategories = [...new Set(articles.map(article => article.category))]
         
     }
 }
-
-.article-nav[data-visible] {height: auto;}
 
 </style>
 

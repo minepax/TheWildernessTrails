@@ -7,5 +7,5 @@ function initMenu() {
     });
 }
 
-initMenu()
-document.addEventListener("astro:after-swap", initMenu)
+initMenu();
+document.addEventListener("astro:after-swap", initMenu);
