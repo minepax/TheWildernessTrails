@@ -7,5 +7,8 @@ export default defineConfig({
     isr: {
       expiration: 60,
     },
+    webAnalytics: {
+      enabled: true,
+    },
   }),
 });
