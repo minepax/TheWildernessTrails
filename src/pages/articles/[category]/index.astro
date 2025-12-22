@@ -29,7 +29,7 @@ Astro.response.headers.set(
         <ul class="article-list">
             {posts.map((post) => (
                 <li class="article-card flow">
-                    <a href={`/articles/${category}/${post.slug}`} class="article-title"><h3>{post.title}</h3></a>
+                    <h3 class="article-title"><a href={`/articles/${category}/${post.slug}`}>{post.title}</a></h3>
                     <p>{post.description}</p>
                 </li>
             ))}
@@ -66,18 +66,15 @@ h1 {text-align: center;}
         backdrop-filter: blur(10px);
         transition: scale 0.4s ease;
 
-        &:hover {scale: 1.02;}
+        &:is(:hover, :focus) {scale: 1.02;}
 
-        .article-title {
-            width: fit-content;
+        .article-title a {
             text-decoration: none;
+            color: var(--clr-tertiary);
+            width: fit-content;
+            transition: color 0.4s ease;
 
-            h3 {
-                color: var(--clr-tertiary);
-                transition: color 0.4s ease;
-
-                &:hover {color: var(--clr-accent-1);}
-            }
+            &:is(:hover, :focus) {color: var(--clr-accent-1);}
         }
 
         p {font-size: 1rem;}

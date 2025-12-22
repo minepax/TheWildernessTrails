@@ -68,7 +68,7 @@ body {
     background-color: hsl(from var(--clr-primary-surface) h s 5% / 0.8);
     backdrop-filter: blur(10px);
 
-    &:hover {color: var(--clr-accent-1);}
+    &:is(:hover, :focus) {color: var(--clr-accent-1);}
 }
 
 .article-title {
