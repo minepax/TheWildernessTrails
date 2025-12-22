@@ -11,3 +11,6 @@ process.env
 # Vercel files
 /.vercel
 /.output
+
+# Local tool cache
+.astro/
