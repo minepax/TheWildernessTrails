@@ -1,6 +1,5 @@
 <form class="comment-form flow">
     <h2 class="form-title">Leave a comment on this article!</h2>
-
     <div class="form-wrapper flow">
 
         <input type="hidden" id="article-slug" name="articleSlug" value={Astro.props.articleSlug} required>
@@ -20,14 +19,15 @@
         <p id="message" class="form-message"></p>
 
     </div>
-    
 </form>
 
 <style>
 
-.comment-form {    
+.comment-form {
     margin-top: 5rem;
+    margin-inline: auto;
     padding: 2rem;
+    max-width: 50rem;
     border-radius: 1.5rem;
     border: 1px solid hsl(from var(--clr-font) h s l / 0.3);
     background-color: hsl(from var(--clr-primary-surface) h s 7% / 0.7);

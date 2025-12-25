@@ -10,10 +10,6 @@ export const POST = async ({ request }) => {
     try {
         const commentData = await request.json();
 
-        if (!process.env.WIX_CLIENT_ID || !process.env.WIX_CLIENT_SECRET) {
-            throw new Error("Missing Wix Client ID or Secret in environment variables.");
-        }
-
         const wixClient = createClient({
             modules: { items },
             auth: OAuthStrategy({

@@ -8,3 +8,12 @@ export function formatCategoryName(categoryName) {
         })
         .join(' ');
 }
+
+export function resolveImageURL(image) {
+    if (image) {
+        const fullURL = 'https://static.wixstatic.com/media/' + image.split('/')[3];
+        return fullURL;
+    } else {
+        return null;
+    }
+}

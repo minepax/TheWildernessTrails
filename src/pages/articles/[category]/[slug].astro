@@ -4,13 +4,17 @@ import MainLayout from "../../../layouts/MainLayout.astro";
 import CommentForm from '../../../components/CommentForm.astro';
 import fetchArticles from "../../../lib/fetchArticles";
 import { formatCategoryName } from "../../../utils/utils";
+import { resolveImageURL } from "../../../utils/utils";
 
 const { category, slug } = Astro.params;
 
 const articles =  await fetchArticles( {collection:"all-articles", categoryName: category, slug: slug} );
 const articleContent = articles[0];
 
+// Beuatifying category name for display on page
 const displayCategoryName = formatCategoryName(category);
+// Retrieving final image URL for display from fetched wix URL
+const finalImageURL =  resolveImageURL(articleContent.featuredImage);
 
 Astro.response.headers.set(
   'CDN-Cache-Control',
@@ -27,9 +31,21 @@ Astro.response.headers.set(
         Back to {displayCategoryName}
     </a>
 
-    <h2 class="article-title">{articleContent.title}</h2>
-    <img src={articleContent.featuredImage} alt="oops-no-image" class="featured-image">
-    <div class="article-content flow" set:html={articleContent.content} />
+    <div class="article flow">
+
+        <h1 class="article-title">{articleContent.title}</h1>
+
+        <!-- Render image only if available -->
+        {finalImageURL ? (
+            <img src={finalImageURL} alt="Oops no image!" class="article-image" />
+        ) : (
+            null
+        )}
+
+        <div class="article-content flow" set:html={articleContent.content} />
+
+    </div>
+
 
     <CommentForm articleSlug = {slug} />
 
@@ -43,8 +59,6 @@ body {
     background-position: top;
     background-repeat: no-repeat;
 }
-
-.wrapper {max-width: 60ch}
 
 .breadcrumb {
     position: fixed;
@@ -71,23 +85,27 @@ body {
     &:is(:hover, :focus) {color: var(--clr-accent-1);}
 }
 
-.article-title {
-    color: var(--clr-accent-1);
-    text-align: center;
-}
-
-.featured-image {
-    margin: 3rem auto;
-    max-height: 50vh;
-    border-radius: 0.5rem;
-    box-shadow: var(--shadow);
-}
-
-.article-content {
-    max-width: 70ch;
+.article {
+    --_flow-space: 3rem;
+    max-width: 60ch;
     margin-inline: auto;
 
-    h4 {font-style: italic;}
+    .article-title {
+        text-align: center;
+    }
+
+    .article-image {
+        margin-inline: auto;
+        max-height: 50vh;
+        border-radius: 0.5rem;
+        box-shadow: var(--shadow);
+    }
+
+    .article-content {
+        margin-inline: auto;
+
+        h4 {font-style: italic;}
+    }
 }
 
 </style>
