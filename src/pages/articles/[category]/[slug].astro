@@ -134,8 +134,8 @@ body {
         gap: 1rem;
 
         .author-img {
-            width: 3rem;
-            height: 3rem;
+            width: 2.5rem;
+            height: 2.5rem;
             border-radius: 50%;
             background-color: var(--clr-primary);
         }
@@ -162,7 +162,19 @@ body {
     .article-content {
         margin-inline: auto;
 
-        h4 {font-style: italic;}
+        h4 {
+            font-style: italic;
+            opacity: 0;
+            animation: fade-in ease forwards;
+            animation-timeline: view();
+            animation-range: entry 20vh 80vh;
+        }
+    }
+}
+
+@keyframes fade-in {
+    100% {
+        opacity: 1;
     }
 }
 
