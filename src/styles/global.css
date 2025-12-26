@@ -15,7 +15,7 @@
 
 :root {
     --clr-primary: hsl(120 100% 3%);
-    --clr-primary-surface: hsl(from var(--clr-primary) h 50% 15%);
+    --clr-primary-surface: hsl(from var(--clr-primary) h 50% 7%);
     --clr-secondary: hsl(from var(--clr-primary) h s 10%);
     --clr-tertiary: hsl(from var(--clr-primary) h s 80%);
     --clr-accent-1: hsl(50 100% 40%);

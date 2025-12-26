@@ -6,8 +6,9 @@ import { formatCategoryName } from "../../../utils/utils";
 
 const { category } = Astro.params;
 
-const posts = await fetchArticles( {collection: "all-articles", categoryName: category} );
+const articles = await fetchArticles( {collection: "all-articles", categoryName: category} );
 
+// Beautifying category name for display on page
 const displayCategoryName = formatCategoryName(category);
 
 Astro.response.headers.set(
@@ -24,18 +25,17 @@ Astro.response.headers.set(
     <h1>{displayCategoryName}</h1>
 
     <div class="latest-articles flow">
-        <h2>Latest articles</h2>
+        <!-- <h2>Latest articles</h2> -->
 
         <ul class="article-list">
-            {posts.map((post) => (
+            {articles.map((article) => (
                 <li class="article-card flow">
-                    <h3 class="article-title"><a href={`/articles/${category}/${post.slug}`}>{post.title}</a></h3>
-                    <p>{post.description}</p>
+                    <h3 class="article-title"><a href={`/articles/${category}/${article.slug}`}>{article.title}</a></h3>
+                    <p>{article.description}</p>
                 </li>
             ))}
         </ul>
     </div>
-
 
 </main>
 
@@ -48,28 +48,28 @@ body {
     background-repeat: no-repeat;
 }
 
-h1 {text-align: center;}
+h1 {text-align: center; text-transform: uppercase;}
 
 .article-list {
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(25ch, 1fr));
     gap: 1rem;
 
     .article-card {
         --_flow-space: 0.5rem;
-        padding: 2rem;
+        padding: 1.5rem;
         border-radius: 0.5rem;
         border: 1px solid hsl(from var(--clr-font) h s l / 0.3);
-        background-color: hsl(from var(--clr-primary-surface) h s l / 0.5);
-        backdrop-filter: blur(10px);
+        background-color: var(--clr-primary-surface);
         transition: scale 0.4s ease;
 
         &:is(:hover, :focus) {scale: 1.02;}
 
         .article-title a {
             text-decoration: none;
+            text-transform: uppercase;
             color: var(--clr-tertiary);
             width: fit-content;
             transition: color 0.4s ease;

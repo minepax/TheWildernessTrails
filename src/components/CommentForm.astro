@@ -1,5 +1,5 @@
 <form class="comment-form flow">
-    <h2 class="form-title">Leave a comment on this article!</h2>
+    <h2 class="form-title">Leave a comment!</h2>
     <div class="form-wrapper flow">
 
         <input type="hidden" id="article-slug" name="articleSlug" value={Astro.props.articleSlug} required>
@@ -28,10 +28,9 @@
     margin-inline: auto;
     padding: 2rem;
     max-width: 50rem;
-    border-radius: 1.5rem;
+    border-radius: 1rem;
     border: 1px solid hsl(from var(--clr-font) h s l / 0.3);
-    background-color: hsl(from var(--clr-primary-surface) h s 7% / 0.7);
-    backdrop-filter: blur(10px);
+    background-color: var(--clr-primary-surface);
 
     .form-title {color: var(--clr-tertiary);}
 
