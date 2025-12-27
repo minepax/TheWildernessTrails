@@ -38,7 +38,7 @@
         --_flow-space: 0.1rem;
 
         label {
-            font-family: "Bitter", sans-serif;
+            font-family: "BioRhyme", serif;
             font-weight: 600;
             font-size: 1rem;
             color: var(--clr-accent-2);
@@ -81,8 +81,12 @@
         background: var(--clr-accent-1);
         transition: opacity 0.2s ease;
 
-        &:is(:hover, :focus) {
+        &:is(:hover, :focus, :disabled) {
             opacity: 0.6;
+        }
+
+        &:disabled {
+            cursor: unset;
         }
     }
 
@@ -126,6 +130,7 @@ document.querySelector('.comment-form')?.addEventListener('submit', async functi
             messageElement.textContent = 'Your comment has been sent!';
             messageElement.style.color = 'hsl(120 100% 80%)';
             form.reset();
+            document.querySelector('.submit-btn').disabled = true;
         } else {
             messageElement.textContent = `Comment submission failed :(`;
             messageElement.style.color = 'hsl(0 100% 80%)';

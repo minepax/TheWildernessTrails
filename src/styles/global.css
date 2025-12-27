@@ -14,13 +14,13 @@
    --------------------------------------------------------- */
 
 :root {
-    --clr-primary: hsl(120 100% 3%);
-    --clr-primary-surface: hsl(from var(--clr-primary) h 50% 7%);
+    --clr-primary: hsl(120 25% 6%);
+    --clr-primary-surface: hsl(from var(--clr-primary) h 35% 10%);
     --clr-secondary: hsl(from var(--clr-primary) h s 10%);
-    --clr-tertiary: hsl(from var(--clr-primary) h s 80%);
-    --clr-accent-1: hsl(50 100% 40%);
-    --clr-accent-2: hsl(from var(--clr-accent-1) h 50% 75%);
-    --clr-font: hsl(from var(--clr-primary) h 20% 90%);
+    --clr-tertiary: hsl(from var(--clr-primary) h 60% 70%);
+    --clr-accent-1: hsl(30 60% 50%);
+    --clr-accent-2: hsl(from var(--clr-accent-1) h 40% 70%);
+    --clr-font: hsl(from var(--clr-primary) h 30% 90%);
 
     --shadow-color: 121 100% 2%;
     --shadow:
@@ -46,7 +46,7 @@ html, body {
 html {-webkit-tap-highlight-color: rgba(0,0,0,0);touch-action: manipulation;}
 
 body {
-  	font-family: "Inter", sans-serif;
+  	font-family: "Montaga", serif;
 	font-weight: 400;
     font-size: 1.2rem;
     line-height: 1.6;
@@ -78,9 +78,8 @@ body {
 :where(p, h1, h2, h3, h4) {overflow-wrap: break-word;}
 
 :where(h1, h2, h3, h4) {
-    font-family: "Bitter", sans-serif;
+    font-family: "BioRhyme", serif;
     line-height: 1.2;
-    letter-spacing: 1px;
     text-wrap: balance;
 }
 

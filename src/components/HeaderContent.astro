@@ -29,7 +29,7 @@ const uniqueCategories = [...new Set(articles.map(article => article.category))]
 <style>
 
 .logo {
-    font-family: "Roboto Mono", monospace;
+    font-family: "Atma", system-ui;
     font-weight: 700;
     font-size: 1.3rem;
     text-decoration: none;
@@ -52,7 +52,7 @@ const uniqueCategories = [...new Set(articles.map(article => article.category))]
         transition: fill 0.3s ease;
     }
 
-    &:is(:hover, :focus) svg {fill: var(--clr-accent-1);}
+    &:is(:hover, :focus-visible) svg {fill: var(--clr-accent-1);}
 }
 
 .article-nav {
@@ -75,15 +75,15 @@ const uniqueCategories = [...new Set(articles.map(article => article.category))]
         list-style-type: none;
         padding: 2rem;
         border-radius: 1rem;
-        background-color: hsl(from var(--clr-primary-surface) h s 85%);
+        background-color: var(--clr-secondary);
 
         a {
-            font-family: "Roboto Mono", monospace;
+            font-family: "Atma", system-ui;
             font-weight: 600;
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--clr-primary);
+            color: var(--clr-tertiary);
             transition: color 0.3s ease;
 
             &:is(:hover, :focus) {color: hsl(from var(--clr-accent-1) h s 30%);}
