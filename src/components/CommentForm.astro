@@ -101,45 +101,50 @@
 
 <script is:inline>
 
-document.querySelector('.comment-form')?.addEventListener('submit', async function(event) {
-    event.preventDefault();
-    
-    const form = event.target;
-    const formData = new FormData(form);
-    const messageElement = document.getElementById('message');
-    
-    const commentData = {
-        title: formData.get('name'),
-        comment: formData.get('comment'),
-        articleSlug: formData.get('articleSlug'),
-    };
+function commentForm() {
+    document.querySelector('.comment-form')?.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        const form = event.target;
+        const formData = new FormData(form);
+        const messageElement = document.getElementById('message');
+        
+        const commentData = {
+            title: formData.get('name'),
+            comment: formData.get('comment'),
+            articleSlug: formData.get('articleSlug'),
+        };
 
-    messageElement.textContent = 'Submitting...';
-    messageElement.style.color = 'hsl(120 20% 90%)';
+        messageElement.textContent = 'Submitting...';
+        messageElement.style.color = 'hsl(120 20% 90%)';
 
-    try {
-        const response = await fetch('/api/submit-comment', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(commentData)
-        });
+        try {
+            const response = await fetch('/api/submit-comment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(commentData)
+            });
 
-        const result = await response.json();
+            const result = await response.json();
 
-        if (response.ok) {
-            messageElement.textContent = 'Your comment has been sent!';
-            messageElement.style.color = 'hsl(120 100% 80%)';
-            form.reset();
-            document.querySelector('.submit-btn').disabled = true;
-        } else {
-            messageElement.textContent = `Comment submission failed :(`;
+            if (response.ok) {
+                messageElement.textContent = 'Your comment has been sent!';
+                messageElement.style.color = 'hsl(120 100% 80%)';
+                form.reset();
+                document.querySelector('.submit-btn').disabled = true;
+            } else {
+                messageElement.textContent = `Comment submission failed :(`;
+                messageElement.style.color = 'hsl(0 100% 80%)';
+            }
+        } catch (error) {
+            messageElement.textContent = 'Network error. Please try again :(';
             messageElement.style.color = 'hsl(0 100% 80%)';
+            console.error('Fetch error:', error);
         }
-    } catch (error) {
-        messageElement.textContent = 'Network error. Please try again :(';
-        messageElement.style.color = 'hsl(0 100% 80%)';
-        console.error('Fetch error:', error);
-    }
-});
+    });
+}
+
+commentForm();
+document.addEventListener("astro:after-swap", commentForm);
 
 </script>
