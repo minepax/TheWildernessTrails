@@ -28,10 +28,18 @@ export const prerender = true;
 
 <body>
 
-<header class="header wrapper">
+<!-- <header class="header wrapper">
 
     <HeaderContent />
 
+</header> -->
+
+<header class="header">
+    <div class="wrapper">
+
+        <HeaderContent />
+
+    </div>
 </header>
 
 <main>
@@ -70,7 +78,7 @@ export const prerender = true;
 
 <style>
 
-.header {
+/*.header {
     position: sticky;
     top: 1rem;
     left: 0;
@@ -93,6 +101,33 @@ export const prerender = true;
     animation-timeline: view();
     animation-range-start: 150vh;
     animation-range-end: 180vh;
+}*/
+
+.header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    height: 4.5rem;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: var(--shadow);
+    background-color: hsl(from var(--clr-primary-surface) h s l / 0.7);
+    backdrop-filter: blur(10px);
+    animation: fade-in linear forwards;
+    animation-timeline: view();
+    animation-range-start: 150vh;
+    animation-range-end: 180vh;
+
+    .wrapper {
+        position: relative;
+        height: 100%;
+        padding-block: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+    }
 }
 
 @keyframes fade-in {
