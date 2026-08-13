@@ -12,7 +12,7 @@ const articles = await fetchArticles( {collection: "all-articles", categoryName:
 const displayCategoryName = formatCategoryName(category);
 
 Astro.response.headers.set(
-  'CDN-Cache-Control', 
+  'CDN-Cache-Control',
   'public, s-maxage=20, stale-while-revalidate=59'
 );
 
@@ -21,7 +21,6 @@ Astro.response.headers.set(
 <MainLayout />
 
 <main class="wrapper flow">
-    
     <h1>{displayCategoryName}</h1>
 
     <div class="latest-articles flow">

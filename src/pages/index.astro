@@ -3,10 +3,9 @@
 import Analytics from '@vercel/analytics/astro';
 import { ClientRouter } from "astro:transitions";
 import { Image } from "astro:assets";
+import HomePageBG from "../images/homepage-bg.webp";
 import HeaderContent from "../components/HeaderContent.astro";
 import '../styles/global.css';
-
-import HomePageBG from "../images/homepage-bg.jpg";
 
 // export const prerender = true;
 
@@ -20,6 +19,7 @@ import HomePageBG from "../images/homepage-bg.jpg";
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Inconsolata:wdth,wght@150,200..900&family=Montaga&family=Sansita:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://static.wixstatic.com">
     <title>The Wilderness Trails</title>
     <ClientRouter />
     <!-- @ts-ignore -->
@@ -46,7 +46,7 @@ import HomePageBG from "../images/homepage-bg.jpg";
 
     <section class="hero">
         <h1 class="hero-title">the unexplored</h1>
-        <Image src={HomePageBG} alt="" class="hero-image" />
+        <Image src={HomePageBG} alt="" class="hero-image" loading="eager" fetchpriority="high" />
     </section>
 
     <section class="about wrapper flow">

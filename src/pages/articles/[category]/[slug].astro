@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import CommentForm from '../../../components/CommentForm.astro';
 import fetchArticles from "../../../lib/fetchArticles";
-import Article from "../../../images/articlepages-bg.jpg";
+import articleBG from "../../../images/articlepages-bg.webp";
 import { formatCategoryName } from "../../../utils/utils";
 import { resolveImageURL } from "../../../utils/utils";
 
@@ -36,7 +36,7 @@ Astro.response.headers.set(
     <div class="article-hero">
         <div class="hero-inner">
             <div class="wrapper">
-            
+
             <h1 class="article-title">{articleContent.title}</h1>
 
             <div class="author">
@@ -53,7 +53,7 @@ Astro.response.headers.set(
 
             </div>
         </div>
-        <Image src={Article} alt="" class="hero-image" />
+        <Image src={articleBG} alt="" class="hero-image" loading="eager" fetchpriority="high" />
     </div>
 
     <div class="article wrapper">
@@ -123,9 +123,9 @@ body {
         object-fit: cover;
         opacity: 0.4;
     }
-    
+
     .article-title {text-align: center; text-transform: uppercase;}
-    
+
     .author {
         margin-block: 0.5rem 4rem;
         display: flex;
@@ -139,7 +139,7 @@ body {
             border-radius: 50%;
             background-color: var(--clr-primary);
         }
-        
+
         .author-title {
             font-size: 1rem;
             letter-spacing: unset;
