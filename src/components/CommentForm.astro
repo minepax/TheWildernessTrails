@@ -138,7 +138,7 @@ document.querySelector('.comment-form')?.addEventListener('submit', async functi
             messageElement.style.color = 'hsl(120 100% 80%)';
             form.reset();
             submitBtn.disabled = true;
-            isSubmitting = false;
+            isSubmitting = true;
         } else {
             messageElement.textContent = `Submission failed :(`;
             messageElement.style.color = 'hsl(0 100% 80%)';
