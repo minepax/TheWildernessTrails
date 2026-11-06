@@ -9,34 +9,6 @@ const wixClient = createClient({
     }),
 });
 
-// export default async function fetchArticles({collection, count, categoryName, slug} = {}) {
-//     let response = await wixClient.items.query(collection);
-
-//     if (categoryName) {
-//         response = response.eq('category', categoryName);
-//     }
-
-//     if (slug) {
-//         response = response.eq('slug', slug);
-//     }
-
-//     if(count != null) {
-//         response = response.limit(count);
-//     }
-
-//     const articles = await response.find();
-//     return articles.items;
-// }
-
-/**
- * Fetches articles from the Wix CMS with optional filtering.
- * @param {Object} options
- * @param {string} options.collection - The name of the Wix collection.
- * @param {number} [options.count] - The maximum number of items to return.
- * @param {string} [options.categoryName] - Filter by category.
- * @param {string} [options.slug] - Filter by specific slug.
- * @returns {Promise<Array>} - Returns an array of articles.
- */
 export default async function fetchArticles ({ collection, count = 10, categoryName, slug } = {}) {
     try {
         let query = wixClient.items.query(collection);
