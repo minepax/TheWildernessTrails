@@ -1,7 +1,7 @@
 import { createClient, OAuthStrategy } from '@wix/sdk';
 import { items } from '@wix/data';
 
-const myWixClient = createClient({
+const WixClient = createClient({
     modules: { items },
     auth: OAuthStrategy({
         clientId: import.meta.env.WIX_CLIENT_ID,
@@ -9,7 +9,7 @@ const myWixClient = createClient({
 });
 
 export default async function fetchArticles({collection, count, categoryName, slug} = {}) {
-    let response = await myWixClient.items.query(collection);
+    let response = await WixClient.items.query(collection);
 
     if (categoryName) {
         response = response.eq('category', categoryName);

@@ -6,26 +6,36 @@ if (process.env.NODE_ENV !== 'production') {
     dotenv.config();
 }
 
+const wixClient = createClient({
+    modules: { items },
+    auth: OAuthStrategy({
+        clientId: process.env.WIX_CLIENT_ID,
+        clientSecret: process.env.WIX_CLIENT_SECRET,
+    }),
+});
+
 export const POST = async ({ request }) => {
     try {
         const commentData = await request.json();
 
-        const wixClient = createClient({
-            modules: { items },
-            auth: OAuthStrategy({
-                clientId: process.env.WIX_CLIENT_ID,
-                clientSecret: process.env.WIX_CLIENT_SECRET,
-            }),
-        });
+        const { title, comment, articleSlug } = commentData;
+        if (!title || !comment || !articleSlug) {
+            return new Response(JSON.stringify({
+                message: 'Missing required fields: title, comment, and articleSlug are required.'
+            }), {
+                status: 400,
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }
 
         const itemToSave = {
-            title: commentData.title,
-            comment: commentData.comment,
-            articleSlug: commentData.articleSlug,
+            title,
+            comment,
+            articleSlug,
         };
 
         const savedItem = await wixClient.items.insert('user-comments', itemToSave);
-        
+
         return new Response(JSON.stringify({
             message: 'Comment submitted successfully.',
             id: savedItem._id
@@ -36,10 +46,10 @@ export const POST = async ({ request }) => {
 
     } catch (error) {
         console.error('Wix Submission Error:', error);
-        
-        
+
+        const status = error.status || 500;
         return new Response(JSON.stringify({
-            message: 'Failed to save comment to Wix CMS.',
+            message: status === 500 ? 'Internal server error.' : error.message,
             error: error.message
         }), {
             status: 500,
