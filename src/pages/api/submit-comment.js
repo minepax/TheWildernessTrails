@@ -1,11 +1,6 @@
 import { createClient, OAuthStrategy } from '@wix/sdk';
 import { items } from '@wix/data';
 
-if (process.env.NODE_ENV !== 'production') {
-    const dotenv = await import('dotenv');
-    dotenv.config();
-}
-
 const wixClient = createClient({
     modules: { items },
     auth: OAuthStrategy({
