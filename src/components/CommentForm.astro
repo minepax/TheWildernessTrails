@@ -8,14 +8,14 @@
             <label for="name">Name</label>
             <input id="name" type="text" name="name" placeholder="Your name" required>
         </div>
-    
+
         <div class="form-group flow">
             <label for="comment">What do you think?</label>
             <textarea id="comment" name="comment" placeholder="Your comment" required></textarea>
         </div>
-    
+
         <button type="submit" class="submit-btn">Submit Comment</button>
-        
+
         <p id="message" class="form-message"></p>
 
     </div>
@@ -53,7 +53,7 @@
             border: none;
             border-radius: 0.25rem;
             background: var(--clr-primary);
-            
+
             &:focus {
                 outline: 1px solid hsl(from var(--clr-font) h s l / 0.3);
             }
@@ -101,13 +101,20 @@
 
 <script is:inline>
 
+let isSubmitting = false;
+
 document.querySelector('.comment-form')?.addEventListener('submit', async function(event) {
     event.preventDefault();
-    
+
+    if (isSubmitting) return;
     const form = event.target;
     const formData = new FormData(form);
+    const submitBtn = document.querySelector('.submit-btn');
     const messageElement = document.getElementById('message');
-    
+
+    isSubmitting = true;
+    submitBtn.disabled = true;
+
     const commentData = {
         title: formData.get('name'),
         comment: formData.get('comment'),
@@ -130,10 +137,12 @@ document.querySelector('.comment-form')?.addEventListener('submit', async functi
             messageElement.textContent = 'Your comment has been sent!';
             messageElement.style.color = 'hsl(120 100% 80%)';
             form.reset();
-            document.querySelector('.submit-btn').disabled = true;
+            submitBtn.disabled = true;
+            isSubmitting = false;
         } else {
-            messageElement.textContent = `Comment submission failed :(`;
+            messageElement.textContent = `Submission failed :(`;
             messageElement.style.color = 'hsl(0 100% 80%)';
+            isSubmitting = false;
         }
     } catch (error) {
         messageElement.textContent = 'Network error. Please try again :(';
